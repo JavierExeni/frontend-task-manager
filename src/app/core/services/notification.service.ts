@@ -12,11 +12,9 @@ import { SnackbarData } from '../../shared/models/snackbar.model';
   providedIn: 'root',
 })
 export class NotificationService {
-  // Signals para configuración
   private horizontalPosition = signal<MatSnackBarHorizontalPosition>('right');
   private verticalPosition = signal<MatSnackBarVerticalPosition>('bottom');
 
-  // Signal para almacenar la referencia actual
   private currentSnackBarRef = signal<MatSnackBarRef<any> | null>(null);
 
   readonly snackbarData = signal<SnackbarData | null>(null);
@@ -65,7 +63,6 @@ export class NotificationService {
     return ref;
   }
 
-  // Métodos públicos
   success(message: string, duration?: number, action?: string) {
     return this.openSnackBar(message, 'success', duration, action);
   }
@@ -82,7 +79,6 @@ export class NotificationService {
     return this.openSnackBar(message, 'info', duration, action);
   }
 
-  // Métodos para configurar posición
   setHorizontalPosition(position: MatSnackBarHorizontalPosition) {
     this.horizontalPosition.set(position);
   }
@@ -91,13 +87,11 @@ export class NotificationService {
     this.verticalPosition.set(position);
   }
 
-  // Método para cerrar el snackbar actual
   dismissCurrent() {
     this.currentSnackBarRef()?.dismiss();
     this.currentSnackBarRef.set(null);
   }
 
-  // Método para cerrar solo los de tipo loading
   dismissLoading() {
     const currentRef = this.currentSnackBarRef();
     if (currentRef?.instance?.type() === 'loading') {

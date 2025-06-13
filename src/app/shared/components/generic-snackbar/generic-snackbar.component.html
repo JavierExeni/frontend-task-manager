@@ -1,0 +1,44 @@
+<div
+  class="flex items-center min-w-[250px] p-4 rounded shadow-lg"
+  [ngClass]="{
+    'bg-green-50 border-l-4 border-green-500': type() === 'success',
+    'bg-red-50 border-l-4 border-red-500': type() === 'error',
+    'bg-blue-50 border-l-4 border-blue-500': type() === 'loading',
+    'bg-gray-50 border-l-4 border-gray-500': type() === 'info'
+  }"
+>
+  <mat-icon
+    class="mr-2"
+    [ngClass]="{
+      'text-green-500': type() === 'success',
+      'text-red-500': type() === 'error',
+      'text-blue-500 animate-spin': type() === 'loading',
+      'text-gray-500': type() === 'info'
+    }"
+  >
+    {{ icon() }}
+  </mat-icon>
+  <span
+    class="flex-grow"
+    [ngClass]="{
+      'text-green-500': type() === 'success',
+      'text-red-500': type() === 'error',
+      'text-blue-500': type() === 'loading',
+      'text-gray-500': type() === 'info'
+    }"
+    >{{ message() }}</span
+  >
+
+  @if(action()){
+  <button class="ml-2 text-sm font-medium underline" (click)="onAction()">
+    {{ action() }}
+  </button>
+  } @if(type() !== 'loading'){
+  <button
+    class="flex justify-center items-center ml-2 -mr-2 p-1 rounded-full hover:bg-gray-200"
+    (click)="dismiss()"
+  >
+    <mat-icon class="text-gray-500 text-base" >close</mat-icon>
+  </button>
+  }
+</div>

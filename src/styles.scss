@@ -4,5 +4,29 @@
 
 @import "assets/styles/theme";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Inter, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none;
+  border-left: none;
+  border-width: 0;
+}
+
+.mat-snack-bar-container {
+  @apply mb-5 relative;
+
+  &:not(:last-child) {
+    @apply mb-3;
+  }
+}
+
+.mdc-snackbar__surface {
+  visibility: hidden;
+}

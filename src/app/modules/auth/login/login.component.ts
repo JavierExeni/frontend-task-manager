@@ -1,18 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { MatCardModule } from '@angular/material/card';
+import { catchError, of, switchMap } from 'rxjs';
+
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 import { AuthService } from '../../../core/services/auth.service';
 import { DialogConfirmCreationComponent } from '../components/dialog-confirm-creation/dialog-confirm-creation.component';
-import { catchError, of, switchMap } from 'rxjs';
 import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
@@ -20,13 +21,13 @@ import { NotificationService } from '../../../core/services/notification.service
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    NgOptimizedImage,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule,
     MatIconModule,
-    NgOptimizedImage,
+    MatInputModule,
   ],
   templateUrl: './login.component.html',
   styles: ``,
@@ -89,7 +90,6 @@ export default class LoginComponent {
       )
       .subscribe((result) => {
         if (result) {
-          this.notificationService.setVerticalPosition('top');
           this.notificationService.setHorizontalPosition('right');
 
           this.router.navigateByUrl('home');

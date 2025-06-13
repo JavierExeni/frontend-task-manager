@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { notAuthGuard } from './core/guards/not-auth.guard';
 
 export const routes: Routes = [
   {
@@ -9,8 +10,11 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
-      import('./modules/example-page/example-page.component').then(
-        (m) => m.ExamplePageComponent
-      ),
+      import('./modules/tasks/pages/task-page/task-page.component'),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./modules/auth/login/login.component'),
+    canMatch: [notAuthGuard],
   },
 ];

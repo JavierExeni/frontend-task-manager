@@ -1,0 +1,37 @@
+<div class="max-w-[800px] rounded-md m-auto shadow-md p-4">
+  <h1 class="mb-4 text-xl">{{isUpdate ? 'Actualizar' : 'Crear'}} tarea</h1>
+  <form #taskForm="ngForm" class="flex flex-col" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Titulo</mat-label>
+      <input formControlName="title" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción</mat-label>
+      <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
+
+    @if(isUpdate){
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="w-full !text-base !py-5"
+        mat-raised-button
+          [mat-dialog-close]="true"
+        color="primary"
+      >
+       Actualizar
+      </button>
+    }@else {
+           <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="w-full !text-base !py-5"
+        mat-raised-button
+        color="primary"
+      >
+        Registrar
+      </button>
+    }
+  </form>
+</div>

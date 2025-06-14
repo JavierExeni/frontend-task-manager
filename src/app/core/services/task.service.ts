@@ -1,8 +1,9 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { CreateTaskPayload, Task, TaskState } from '../models/task.model';
 import { Observable, switchMap, tap } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
+import { CreateTaskPayload, Task, TaskState } from '../models/task.model';
 import { AuthService } from './auth.service';
 
 const baseUrl = environment.baseUrl;

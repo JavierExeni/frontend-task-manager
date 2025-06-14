@@ -18,7 +18,7 @@ jobs:
       - run: |
           echo "export const environment = {
             production: true,
-            baseUrl: '${{ secrets.API_URL_PROD }}'  # Secret con la URL de tu API en producción
+            baseUrl: '${{ secrets.API_URL_PROD }}'
           };" > src/environments/environment.prod.ts
 
       # Paso 5: Build del proyecto Angular

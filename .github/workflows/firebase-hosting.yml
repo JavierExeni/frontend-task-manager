@@ -1,19 +1,17 @@
-name: Deploy Angular to Firebase Hosting
-
+name: Deploy to Firebase Hosting on merge
 on:
   push:
-    branches: [ "main" ]  # Cambia si usas otra rama principal
-
+    branches:
+      - main
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Usa la versión de tu proyecto
+          node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - run: npm ci
 
@@ -26,9 +24,4 @@ jobs:
       # Paso 5: Build del proyecto Angular
       - run: npm run build -- --configuration production
 
-      # Paso 6: Desplegar en Firebase Hosting
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
-          channelId: live  # Canal de producción
+      - run: npx firebase-tools@14.7.0 deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }} --non-interactive --debug

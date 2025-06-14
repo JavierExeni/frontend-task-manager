@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 
 .nx/
+
+# Ignorar archivos de entorno (excepto templates)
+/src/environments/environment.ts

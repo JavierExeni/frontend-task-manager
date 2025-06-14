@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpInterceptorFn, HttpStatusCode } from '@angular/common/http';
 
 import { catchError, throwError } from 'rxjs';
-import { NotificationService } from './services/notification.service';
+import { NotificationService } from '../services/notification.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const notificationService = inject(NotificationService);

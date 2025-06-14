@@ -1,36 +1,121 @@
-# ATOM FE CHALLENGE TEMPLATE - ANGULAR
+# 📋 Task Manager - Frontend (Angular)
 
-Este proyecto es una plantilla con lo necesario para comenzar a desarrollar el front-end de la aplicación de la prueba técnica de Atom. Se base en Angular con la versión 17.3.6.
-Se ha realizado la instalación y configuración de varias dependencias necesarias para el desarrollo de la aplicación, como por ejemplo: Angular Material.
+![Angular](https://img.shields.io/badge/Angular-17-DD0031?logo=angular) 
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black) 
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 
-## Instrucciones
-Siéntete libre de clonar este repositorio y utilizarlo como base para el desarrollo de la aplicación. Sigue las indicates de la prueba técnica para completar la aplicación y desarrolla como más te sientas cómodo.
+Aplicación de gestión de tareas con autenticación por email y operaciones CRUD. Conectada a un backend en Firebase Cloud Functions.
 
-De igual manera puedes documentar dentro de este archivo todo lo que deseas contar sobre tu desarrollo, como por ejemplo, decisiones de diseño, problemas encontrados, etc.
+## 🚀 Demo
 
-## Comentarios sobre el desarrollo
-...
+[![Demo en vivo](https://img.shields.io/badge/Ver-Demo_En_Vivo-2EA44F?style=for-the-badge)](https://task-manager-challenge.web.app/login)
 
-## Development server
+<div style="display: flex; gap: 15px; justify-content: center; margin: 20px 0;">
+  <img src="./src/assets/images/login.png" alt="Vista de Login" style="width: 45%; border: 1px solid #ddd; border-radius: 8px;">
+  <img src="./src/assets/images/menu.png" alt="Vista de Menú" style="width: 45%; border: 1px solid #ddd; border-radius: 8px;">
+</div>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🎯 Características
 
-## Code scaffolding
+- **Autenticación simplificada**:
+  - Login con solo email
+  - Auto-creación de usuario si no existe
+- **Gestión completa de tareas**:
+  - ✅ Listas/Crear/Editar/Eliminar tareas
+  - 🗓️ Ordenación automática por fecha
+  - 🔍 Filtrado por titulo y estado (completadas/pendientes)
+- **Notificaciones** con feedback visual
+- **Diseño responsive** con Angular Material
+- **Arquitectura reactiva** usando Angular Signals
+- **Material Design** con Angular Material
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠️ Tecnologías
 
-## Build
+| Tecnología       | Uso                              |
+|------------------|----------------------------------|
+| Angular 17       | Framework principal              |
+| RxJS & Signals   | Manejo de estados y streams      |
+| Angular Material | Componentes UI                   |
+| Firebase         | Hosting y backend (Cloud Functions) |
+| TypeScript       | Tipado estático                  |
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🏗️ Estructura del Proyecto
 
-## Running unit tests
+```bash
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── guards/
+│   │   │   ├── interceptors/
+│   │   │   ├── models/
+│   │   │   └── services/
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   └── tasks/
+│   │   ├── shared/
+│   │   │   └── components/
+│   │   ├── app.component.html
+│   │   ├── app.component.scss
+│   │   ├── app.component.spec.ts
+│   │   ├── app.component.ts
+│   │   ├── app.config.ts
+│   │   └── app.routes.ts
+│   └── assets/
+└── ...
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Cómo Empezar
+- Node.js v20+
+- Angular CLI
+- Cuenta de Firebase
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Instalación
+1. Clonar repositorio:
 
-## Further help
+```bash
+git clone https://github.com/JavierExeni/frontend-task-manager.git
+cd frontend-task-manager
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Instalar dependencias:
+
+```bash
+# Instalar dependencias
+npm install
+
+# Servidor de desarrollo
+ng serve -o
+
+# Construir para producción
+ng build
+
+# Ejecutar tests
+ng test
+
+# Linting
+ng lint
+```
+
+3. Configurar entorno:
+
+```bash
+export const environment = {
+  production: false,
+  apiUrl: "http://..."
+};
+```
+
+## Despliegue
+
+1. Build de producción:
+
+```bash
+ng build --configuration production
+```
+
+2. Desplegar a Firebase Hosting:
+
+```bash
+firebase deploy
+```

@@ -15,7 +15,7 @@ jobs:
       # Paso 2: Configurar Node.js
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'  # Usa la versión de tu proyecto
+          node-version: '18'  # Usa la versión de tu proyecto
 
       # Paso 3: Instalar dependencias
       - run: npm ci

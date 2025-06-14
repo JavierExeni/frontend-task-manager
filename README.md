@@ -4,7 +4,7 @@
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black) 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 
-Aplicación de gestión de tareas con autenticación por email y operaciones CRUD. Conectada a un backend en Firebase Cloud Functions.
+Prueba técnica para la empresa ATOM en la cual se desarrollo una aplicación de gestión de tareas con autenticación por email y operaciones CRUD. Conectada a un backend en Firebase Cloud Functions.
 
 ## 🚀 Demo
 

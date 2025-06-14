@@ -63,7 +63,7 @@ export class TaskFilterFormComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe(() => {
-        console.log('first');
+        this.taskService.taskState.set(TaskState.ALL);
       });
 
     this.form
@@ -77,9 +77,7 @@ export class TaskFilterFormComponent implements OnInit, OnDestroy {
           return this.taskService.getTasksByUser(filters);
         })
       )
-      .subscribe(() => {
-        console.log('second');
-      });
+      .subscribe();
   }
 
   private filterTasks(state?: TaskState | null, title?: string) {

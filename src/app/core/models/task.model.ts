@@ -7,5 +7,13 @@ export interface Task {
   createdAt: string;
 }
 
+export type CreateTaskPayload = Omit<
+  Task,
+  'id' | 'completed' | 'createdAt' | 'userId'
+>;
 
-export type CreateTaskPayload = Omit<Task, 'id' | 'completed' | 'createdAt' | 'userId'>;
+export enum TaskState {
+  ALL = 'all',
+  COMPLETED = 'completed',
+  PENDING = 'pending',
+}

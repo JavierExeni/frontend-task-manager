@@ -1,0 +1,15 @@
+<div class="px-4 pt-4">
+  <form [formGroup]="form" class="flex items-baseline gap-5">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar tareas</mat-label>
+      <input matInput formControlName="title" placeholder="Filtrar por título...">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-button-toggle-group formControlName="state" aria-label="Estado de tareas">
+      <mat-button-toggle [value]="TaskState.ALL">Todas</mat-button-toggle>
+      <mat-button-toggle [value]="TaskState.COMPLETED">Completadas</mat-button-toggle>
+      <mat-button-toggle [value]="TaskState.PENDING">Pendientes</mat-button-toggle>
+    </mat-button-toggle-group>
+  </form>
+</div>

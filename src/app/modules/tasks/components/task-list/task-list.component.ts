@@ -9,10 +9,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 
-import { Task } from '../../../../core/models/task.model';
+import { Task, TaskState } from '../../../../core/models/task.model';
 import { TaskService } from '../../../../core/services/task.service';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { TaskFormComponent } from '../task-form/task-form.component';
+import { TaskFilterFormComponent } from '../task-filter-form/task-filter-form.component';
 
 @Component({
   selector: 'atom-task-list',
@@ -25,6 +26,7 @@ import { TaskFormComponent } from '../task-form/task-form.component';
     MatIconButton,
     MatMenuModule,
     MatTableModule,
+    TaskFilterFormComponent
   ],
   templateUrl: './task-list.component.html',
   styles: ``,
@@ -102,6 +104,7 @@ export class TaskListComponent implements OnInit {
   deleteTask(row: Task) {
     this.notificationService.loading('Eliminando...');
     this.taskService.deleteTask(row.id).subscribe((_) => {
+      this.taskService.taskState.set(TaskState.ALL);
       this.notificationService.dismissLoading();
       this.notificationService.success('¡Tarea eliminada con exito!', 5000);
     });

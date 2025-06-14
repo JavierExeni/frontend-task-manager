@@ -8,7 +8,11 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButton } from '@angular/material/button';
-import { CreateTaskPayload, Task } from '../../../../core/models/task.model';
+import {
+  CreateTaskPayload,
+  Task,
+  TaskState,
+} from '../../../../core/models/task.model';
 import { TaskService } from '../../../../core/services/task.service';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { MatDialogClose } from '@angular/material/dialog';
@@ -60,6 +64,7 @@ export class TaskFormComponent implements OnInit {
   onCreate(data: CreateTaskPayload) {
     this.notificationService.loading('Registrando...');
     this.taskService.addTask(data).subscribe((res) => {
+      this.taskService.taskState.set(TaskState.ALL);
       this.notificationService.dismissLoading();
       this.notificationService.success('¡Tarea registrada con exito!', 8000);
       this.taskForm.resetForm();

@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
-import { CreateTaskPayload, Task } from '../models/task.model';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { CreateTaskPayload, Task, TaskState } from '../models/task.model';
 import { Observable, switchMap, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -18,12 +18,24 @@ export class TaskService {
 
   tasks = signal<Task[]>([]);
 
+  taskState = signal(TaskState.ALL);
+
   selectedTask = signal<Task | null>(null);
 
-  getTasksByUser(): Observable<Task[]> {
+  getTasksByUser(filters?: {
+    title?: string;
+    completed?: boolean;
+  }): Observable<Task[]> {
     const userId = this.userAuth()!.id;
+    let params = new HttpParams();
+    if (filters) {
+      if (filters.title) params = params.set('title', filters.title);
+      if (filters.completed !== undefined)
+        params = params.set('completed', filters.completed.toString());
+    }
+
     return this.http
-      .get<Task[]>(`${baseUrl}/tasks/${userId}`)
+      .get<Task[]>(`${baseUrl}/tasks/${userId}`, { params })
       .pipe(tap((res) => this.tasks.set(res)));
   }
 

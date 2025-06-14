@@ -1,5 +1,7 @@
 <div class="rounded-md m-auto shadow-md overflow-auto">
-  <table mat-table [dataSource]="TaskList()" class="mat-elevation-z8">
+  <atom-task-filter-form></atom-task-filter-form>
+  <hr />
+  <table mat-table [dataSource]="TaskList()">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th class="!p-0" mat-header-cell *matHeaderCellDef></th>
@@ -95,15 +97,14 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  @if(TaskList().length == 0){
+  <div class="p-4 flex gap-2 items-center">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="info"
+    ></mat-icon>
+    <span>No hay tareas registradas.</span>
+  </div>
+  }
 </div>
-
-@if(TaskList().length == 0){
-<div class="shadow-md rounded-md mat-cell p-4 flex gap-2 items-center mt-5">
-  <mat-icon
-    aria-hidden="false"
-    aria-label="Example home icon"
-    fontIcon="info"
-  ></mat-icon>
-  <span>No hay tareas registradas.</span>
-</div>
-}

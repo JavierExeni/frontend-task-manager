@@ -18,24 +18,24 @@
         priority
       />
       <h1 class="text-xl sm:text-2xl font-bold text-center mt-5">Sign In / Sign Up</h1>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="w-full pt-6 pb-0 sm:pt-5 sm:pb-2" appearance="outline">
           <mat-label>Email</mat-label>
           <input
             type="email"
             matInput
-            [formControl]="emailFormControl"
+            formControlName="email"
             placeholder="pat@example.com"
           />
           <mat-icon matSuffix> mail </mat-icon>
-          @if (emailFormControl.hasError('email') &&
-          !emailFormControl.hasError('required')) {
+          @if (loginForm.get('email')?.hasError('email') &&
+          !loginForm.get('email')?.hasError('required')) {
           <mat-error>Ingresa un formato de correo <strong>valido</strong></mat-error>
-          } @if (emailFormControl.hasError('required')) {
+          } @if (loginForm.get('email')?.hasError('required')) {
           <mat-error>El correo electrónico es <strong>requerido</strong></mat-error>
           }
         </mat-form-field>
-        <button (click)="onSubmit()" type="button" [disabled]="emailFormControl.invalid" class="w-full !text-base !py-5" mat-raised-button color="primary">
+        <button type="submit" [disabled]="loginForm.invalid" class="w-full !text-base !py-5" mat-raised-button color="primary">
           Iniciar Sesión
         </button>
       </form>

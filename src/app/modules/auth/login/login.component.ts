@@ -1,7 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 import { catchError, of, switchMap } from 'rxjs';
 
@@ -33,25 +38,25 @@ import { NotificationService } from '../../../core/services/notification.service
   styles: ``,
 })
 export default class LoginComponent {
+  fb = inject(FormBuilder);
   router = inject(Router);
   dialog = inject(MatDialog);
   authService = inject(AuthService);
   notificationService = inject(NotificationService);
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  loginForm: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+  });
 
   async onSubmit() {
-    if (this.emailFormControl.invalid) return;
+    if (this.loginForm.invalid) return;
 
     this.notificationService.setVerticalPosition('bottom');
     this.notificationService.setHorizontalPosition('center');
 
     this.notificationService.loading('Cargando...');
 
-    const email = this.emailFormControl.value;
+    const { email } = this.loginForm.value;
 
     const isAuthenticated = await this.authService.findUserByEmail(email!);
     this.notificationService.dismissLoading();
@@ -100,7 +105,7 @@ export default class LoginComponent {
             );
           }, 150);
         }
-        this.emailFormControl.reset();
+        this.loginForm.reset();
       });
   }
 }

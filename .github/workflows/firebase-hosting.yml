@@ -1,0 +1,38 @@
+name: Deploy Angular to Firebase Hosting
+
+on:
+  push:
+    branches: [ "main" ]  # Cambia si usas otra rama principal
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Checkout del código
+      - uses: actions/checkout@v4
+
+      # Paso 2: Configurar Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'  # Usa la versión de tu proyecto
+
+      # Paso 3: Instalar dependencias
+      - run: npm ci
+
+      # Paso 4: Crear environment.prod.ts solo con apiUrl (el resto se espera en el archivo local)
+      - run: |
+          echo "export const environment = {
+            production: true,
+            apiUrl: '${{ secrets.API_URL_PROD }}'  # Secret con la URL de tu API en producción
+          };" > src/environments/environment.ts
+
+      # Paso 5: Build del proyecto Angular
+      - run: npm run build -- --configuration production
+
+      # Paso 6: Desplegar en Firebase Hosting
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
+          channelId: live  # Canal de producción

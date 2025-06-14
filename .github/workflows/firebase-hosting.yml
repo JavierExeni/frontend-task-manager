@@ -9,18 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Checkout del código
       - uses: actions/checkout@v4
 
-      # Paso 2: Configurar Node.js
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'  # Usa la versión de tu proyecto
+          node-version: '20'  # Usa la versión de tu proyecto
 
-      # Paso 3: Instalar dependencias
       - run: npm ci
 
-      # Paso 4: Crear environment.prod.ts solo con apiUrl (el resto se espera en el archivo local)
       - run: |
           echo "export const environment = {
             production: true,

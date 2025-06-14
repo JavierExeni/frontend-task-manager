@@ -6,6 +6,9 @@
 
 Prueba técnica para la empresa ATOM en la cual se desarrollo una aplicación de gestión de tareas con autenticación por email y operaciones CRUD. Conectada a un backend en Firebase Cloud Functions.
 
+## 🔗 Enlaces
+- **Backend**: [Repositorio backend](https://github.com/JavierExeni/backend-task-manager)
+
 ## 🚀 Demo
 
 [![Demo en vivo](https://img.shields.io/badge/Ver-Demo_En_Vivo-2EA44F?style=for-the-badge)](https://task-manager-challenge.web.app/login)
@@ -53,7 +56,8 @@ Prueba técnica para la empresa ATOM en la cual se desarrollo una aplicación de
 │   │   │   ├── auth/
 │   │   │   └── tasks/
 │   │   ├── shared/
-│   │   │   └── components/
+│   │   │   ├── components/
+│   │   │   └── models/
 │   │   ├── app.component.html
 │   │   ├── app.component.scss
 │   │   ├── app.component.spec.ts
@@ -98,6 +102,7 @@ ng lint
 ```
 
 3. Configurar entorno:
+En base al backend desarrollado [Repositorio](https://github.com/JavierExeni/backend-task-manager)
 
 ```bash
 export const environment = {

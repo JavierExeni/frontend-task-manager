@@ -26,7 +26,7 @@ import { TaskFilterFormComponent } from '../task-filter-form/task-filter-form.co
     MatIconButton,
     MatMenuModule,
     MatTableModule,
-    TaskFilterFormComponent
+    TaskFilterFormComponent,
   ],
   templateUrl: './task-list.component.html',
   styles: ``,
@@ -53,7 +53,10 @@ export class TaskListComponent implements OnInit {
   selection = new SelectionModel<Task>(true, []);
 
   ngOnInit(): void {
-    this.taskService.getTasksByUser().subscribe();
+    this.notificationService.loading('Cargando...');
+    this.taskService
+      .getTasksByUser()
+      .subscribe((_) => this.notificationService.dismissLoading());
   }
 
   isAllSelected() {

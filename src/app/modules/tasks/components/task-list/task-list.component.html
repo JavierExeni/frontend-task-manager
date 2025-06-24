@@ -1,4 +1,4 @@
-<div class="rounded-md m-auto shadow-md overflow-auto">
+<div class="rounded-md shadow-md overflow-auto">
   <atom-task-filter-form></atom-task-filter-form>
   <hr />
   <table mat-table [dataSource]="TaskList()">
@@ -33,6 +33,7 @@
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef>Descripción</th>
       <td
+      class="max-w-[300px] whitespace-normal break-words"
         [ngClass]="{ 'line-through decoration-2 italic': element.completed }"
         mat-cell
         *matCellDef="let element"

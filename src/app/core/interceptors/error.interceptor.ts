@@ -13,7 +13,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error: any) => {
       switch (error.status) {
         case HttpStatusCode.BadRequest:
-          notificationService.error(error.message, 10000);
+          const resError = error.error
+          if(resError.errors){
+            notificationService.error(resError.errors[0].message, 10000);
+          }else{
+            notificationService.error(error.message, 10000);
+          }
           break;
         case HttpStatusCode.NotFound:
           if (!router.url.includes('/login')) {

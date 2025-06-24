@@ -49,7 +49,15 @@ export class TaskFormComponent implements OnInit {
   }
 
   submit() {
-    const formValue = this.form.value;
+    const { title, description } = this.form.value;
+    const formValue = {
+      title: title?.trim(),
+      description: description?.trim(),
+    };
+    if (formValue.title == '' || formValue.description == '') {
+      this.notificationService.error('No puedes dejar campos en blanco.', 8000);
+      return;
+    }
 
     if (this.isUpdate) {
       this.onUpdate(formValue);
@@ -63,7 +71,7 @@ export class TaskFormComponent implements OnInit {
 
   onCreate(data: CreateTaskPayload) {
     this.notificationService.loading('Registrando...');
-    this.taskService.addTask(data).subscribe((res) => {
+    this.taskService.addTask(data).subscribe((_) => {
       this.taskService.taskState.set(TaskState.ALL);
       this.notificationService.dismissLoading();
       this.notificationService.success('¡Tarea registrada con exito!', 8000);
